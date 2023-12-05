@@ -1,0 +1,17 @@
+.container{
+    position: relative;
+    margin: auto;
+    width: 40px;
+}
+.mb-3 {
+    max-width: 20rem;
+}
+.form-wrapper {
+    padding: 4%;
+    position: absolute;
+    max-width: 450px;
+    background-color: white;
+    margin: 8rem 24rem;
+    color: black;
+    border-radius: 8px;
+}

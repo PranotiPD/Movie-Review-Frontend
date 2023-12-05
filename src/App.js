@@ -8,6 +8,8 @@ import Header from './components/header/Header';
 import Trailer from './components/trailer/Trailer';
 import Reviews from './components/reviews/Reviews';
 import NotFound from './components/notFound/NotFound';
+import Registation from './components/registration/Registration';
+import Login from './components/header/login/Login';
 
 function App() {
 
@@ -40,9 +42,9 @@ function App() {
         const singleMovie = response.data;
 
         setMovie(singleMovie);
-
-        setReviews(singleMovie.reviews);
-        
+        console.log('movie', singleMovie)
+        setReviews(response.data.reviewIds);
+        console.log('array of reviews', response.data.reviewIds);
 
     } 
     catch (error) 
@@ -54,17 +56,19 @@ function App() {
 
   useEffect(() => {
     getMovies();
-  },[])
+  },[movie])
 
   return (
     <div className="App">
-      <Header/>
+      {/* <Route path="/" element={<Header />} /> */}
       <Routes>
           <Route path="/" element={<Layout/>}>
-            <Route path="/" element={<Home movies={movies} />} ></Route>
-            <Route path="/Trailer/:ytTrailerId" element={<Trailer/>}></Route>
-            <Route path="/Reviews/:movieId" element ={<Reviews getMovieData = {getMovieData} movie={movie} reviews ={reviews} setReviews = {setReviews} />}></Route>
+            <Route path="/" element={[<Home movies={movies} />, <Header />]} ></Route>
+            <Route path="/Trailer/:ytTrailerId" element={[<Trailer/>,<Header />]}></Route>
+            <Route path="/Reviews/:movieId" element ={[<Reviews getMovieData = {getMovieData} movie={movie} reviews ={reviews} setReviews = {setReviews} />, <Header />]}></Route>
             <Route path="*" element = {<NotFound/>}></Route>
+            <Route path="/registration" element={<Registation/>}></Route>
+            <Route path="/login" element={<Login/>}></Route>
           </Route>
       </Routes>
 
